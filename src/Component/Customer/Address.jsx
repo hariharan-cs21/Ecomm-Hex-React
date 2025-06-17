@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const Address = () => {
     const [addresses, setAddresses] = useState([]);
+    const [msg, setMsg] = useState("");
+
     const [data, setdata] = useState({
         street: '',
         city: '',
@@ -34,6 +36,10 @@ const Address = () => {
     };
 
     const addAddress = async () => {
+        if (!(data.city && data.contactNumber && data.street && data.postalCode && data.country)) {
+            setMsg("Add all fields*")
+            return;
+        }
         try {
             await axios.post('http://localhost:8080/api/address/add', data, {
                 headers: { Authorization: "Bearer " + token }
@@ -57,7 +63,8 @@ const Address = () => {
             <div className="row">
                 <div className="col-md-6 mb-4">
                     <h4>Add New Address</h4>
-
+                    {msg && <div className="alert alert-info py-1 text-center">{msg}</div>}
+                    <hr />
                     <div className="mb-3">
                         <label >Street</label>
                         <input

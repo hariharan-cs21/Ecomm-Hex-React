@@ -34,7 +34,7 @@ const Orders = () => {
                     <div key={order.orderId} className="card mb-3 shadow-sm border-0">
                         <div className="card-body">
                             <div className="d-flex justify-content-between align-items-center mb-2">
-                                <h5 className="card-title mb-0">Order Id - {order.orderId}</h5>
+                                <h5 className="card-title mb-0">Order # {order.orderId}</h5>
                                 <span className={`badge ${order.status === 'DELIVERED' ? 'bg-success' :
                                     order.status === 'CANCELLED' ? 'bg-danger' :
                                         order.status === 'PENDING' ? 'bg-warning text-dark' :
@@ -57,7 +57,7 @@ const Orders = () => {
                                 {order.items.map((item, idx) => (
                                     <li key={idx} className="list-group-item d-flex justify-content-between align-items-center px-0">
                                         <div>
-                                            {item.productName} <span className="text-muted">({item.itemStatus})</span>
+                                            #{item.itemId} {item.productName} <span className="text-muted">({item.itemStatus === "APPROVED" ? "Item ready for shippment" : item.itemStatus})</span>
                                         </div>
                                         <div>
                                             {item.quantity} x ₹{item.price.toLocaleString()}
