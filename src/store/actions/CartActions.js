@@ -29,7 +29,4 @@ export const setCart = (dispatch) => (token) => {
                 payload: items.length
             });
         })
-        .catch(err => {
-            console.error("Error fetching cart:", err);
-        });
 };

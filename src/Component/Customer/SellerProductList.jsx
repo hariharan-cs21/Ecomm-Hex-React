@@ -34,12 +34,12 @@ const SellerProductList = () => {
         const quantity = quantities[sellerProductId]
 
         if (quantity < 1) {
-            setMsg("Please enter a valid quantity (minimum 1).");
+            setMsg("Please enter a valid quantity");
             return;
         }
 
         if (quantity > stockQuantity) {
-            setMsg(`Only ${stockQuantity} items in stock. Please enter a lower quantity.`);
+            setMsg(`Only ${stockQuantity} items in stock`);
             return;
         }
 

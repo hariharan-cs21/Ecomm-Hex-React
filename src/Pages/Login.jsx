@@ -1,12 +1,15 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { setUserDetails } from "../store/actions/UserActions"
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [msg, setMsg] = useState("")
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const handleLogin = async () => {
         const encodeString = window.btoa(username + ":" + password)
         try {
@@ -23,6 +26,11 @@ const Login = () => {
                     "Authorization": "Bearer " + token
                 }
             })
+            let user = {
+                'username': username,
+                'role': detail.data.user.role
+            }
+            setUserDetails(dispatch)(user);
             localStorage.setItem("name", detail.data.name)
             let role = detail.data.user.role
             switch (role) {
