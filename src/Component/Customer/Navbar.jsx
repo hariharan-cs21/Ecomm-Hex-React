@@ -44,7 +44,7 @@ const Navbar = () => {
 
 
                         <li className="nav-item">
-                            <Link className="nav-link" to="/orders">Orders</Link>
+                            <Link className="nav-link" to="/customer/orders">Orders</Link>
                         </li>
                     </ul>
 
@@ -62,14 +62,24 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" style={{ cursor: "pointer" }}>
+                            <span
+                                className="nav-link dropdown-toggle"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                style={{ cursor: "pointer" }}
+                            >
                                 <RxAvatar size={24} />
                                 {user.username || name}
                             </span>
+
                             <ul className="dropdown-menu dropdown-menu-end" style={{ cursor: "pointer" }}>
-                                <li className="dropdown-item" onClick={handleLogout}>Logout</li>
+                                <Link to="/customer/address" className="dropdown-item">My Address</Link>
+                                <li>
+                                    <span className="dropdown-item" onClick={handleLogout}>Logout</span>
+                                </li>
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </div>
