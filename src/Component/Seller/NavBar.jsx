@@ -1,5 +1,4 @@
 import { useNavigate, Link } from "react-router-dom";
-import { IoMdCart } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "../../store/actions/UserActions";
@@ -8,7 +7,6 @@ const Navbar = () => {
     const name = localStorage.getItem("name");
     const user = useSelector(state => state.user)
     const navigate = useNavigate();
-    const cartsize = useSelector(state => state.cart.cartSize)
     const dispatch = useDispatch()
     const handleLogout = () => {
         localStorage.clear();
@@ -19,9 +17,7 @@ const Navbar = () => {
         }
         setUserDetails(dispatch)(user);
     };
-    const handleCart = () => {
-        navigate("/customer/cart")
-    }
+
 
 
     return (
@@ -36,16 +32,20 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
-
                         <li className="nav-item">
-                            <Link className="nav-link" to="/customer">Products</Link>
+                            <Link className="nav-link" >Orders</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" >Product Requests</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" >Add Product</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" >Categories</Link>
                         </li>
 
 
-
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/customer/orders">Orders</Link>
-                        </li>
                     </ul>
 
                     <form className="d-flex me-3" role="search" onSubmit={(e) => e.preventDefault()}>
@@ -54,13 +54,7 @@ const Navbar = () => {
                     </form>
 
                     <ul className="navbar-nav ">
-                        <li className="nav-item" onClick={handleCart}>
-                            <Link className="nav-link" to="/cart">
-                                <IoMdCart size={24} />
-                                {cartsize}
 
-                            </Link>
-                        </li>
                         <li className="nav-item dropdown">
                             <span
                                 className="nav-link dropdown-toggle"
@@ -73,8 +67,6 @@ const Navbar = () => {
                             </span>
 
                             <ul className="dropdown-menu dropdown-menu-end" style={{ cursor: "pointer" }}>
-                                <Link to="/customer/address" className="dropdown-item">My Address</Link>
-                                <Link to="/customer/profile" className="dropdown-item">My Profile</Link>
                                 <li>
                                     <span className="dropdown-item" onClick={handleLogout}>Logout</span>
                                 </li>

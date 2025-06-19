@@ -65,7 +65,7 @@ const Address = () => {
                     <h4>Add New Address</h4>
                     {msg && <div className="alert alert-info py-1 text-center">{msg}</div>}
                     <hr />
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >Street</label>
                         <input
                             type="text"
@@ -76,7 +76,7 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >City</label>
                         <input
                             type="text"
@@ -87,7 +87,7 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >State</label>
                         <input
                             type="text"
@@ -98,7 +98,7 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >Postal Code</label>
                         <input
                             type="text"
@@ -109,7 +109,7 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >Country</label>
                         <input
                             type="text"
@@ -120,7 +120,7 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-2">
                         <label >Contact Number</label>
                         <input
                             type="text"
@@ -138,6 +138,8 @@ const Address = () => {
 
                 <div className="col-md-6">
                     <h4>Saved Addresses</h4>
+                    <hr />
+
                     {addresses.length === 0 ? (
                         <p>No addresses found.</p>
                     ) : (
