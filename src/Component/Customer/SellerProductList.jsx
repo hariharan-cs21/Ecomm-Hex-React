@@ -80,7 +80,7 @@ const SellerProductList = () => {
                             <div className="row g-0">
                                 <div className="col-md-4">
                                     <img
-                                        src={sp.imageUrl}
+                                        src={`/images/${sp.imageUrl}`}
                                         className="img-fluid rounded-start h-100"
                                         alt={sp.productName}
                                         style={{ objectFit: 'cover' }}

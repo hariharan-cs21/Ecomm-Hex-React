@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../Component/Customer/Navbar'
 import { Outlet } from "react-router-dom"
 import { useEffect } from 'react'
-import { getCartSize, setCart } from '../store/actions/CartActions'
+import { setCart } from '../store/actions/CartActions'
 
 const CustomerDashboard = () => {
     const dispatch = useDispatch()

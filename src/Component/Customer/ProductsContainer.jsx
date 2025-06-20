@@ -6,9 +6,10 @@ export const ProductsContainer = (props) => {
                 <div className="col-6 col-sm-4 col-md-3" key={product.productId}>
                     <div className="card border-0 shadow-sm h-100">
                         <img
-                            src={product.imageUrl}
+                            src={`/images/${product.imageUrl}`}
                             className="card-img-top"
                             alt={product.productName}
+                            width="70px"
 
                         />
                         <div className="card-body p-2">

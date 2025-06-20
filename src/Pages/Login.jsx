@@ -42,6 +42,10 @@ const Login = () => {
                     navigate("/seller")
                     break;
 
+                case "EXECUTIVE":
+                    navigate("/executive")
+                    break;
+
                 default:
                     setMsg("Login Not allowed")
                     break;

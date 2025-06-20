@@ -51,8 +51,8 @@ const Cart = () => {
             })
             setMsg("Order placed successfully!");
             setCart(dispatch)(token);
-        } catch {
-            setMsg("Failed to place order");
+        } catch (err) {
+            setMsg(err.response.data.message || "Failed to place order");
         }
     };
 
@@ -83,7 +83,7 @@ const Cart = () => {
                                 <div className="card mb-2 shadow-sm border-0" key={item.id}>
                                     <div className="d-flex">
                                         <img
-                                            src={product.imageUrl}
+                                            src={`/images/${product.imageUrl}`}
                                             alt={product.productName}
                                             className="img-thumbnail"
                                             style={{ width: 80, height: 80, objectFit: 'cover', borderRadius: '8px', margin: '10px' }}

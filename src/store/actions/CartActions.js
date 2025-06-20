@@ -1,14 +1,14 @@
 import axios from "axios"
 
 
-export const getCartSize = (dispatch) => (cartItems) => {
+// export const getCartSize = (dispatch) => (cartItems) => {
 
-    const size = cartItems.length
-    dispatch({
-        type: "GET_CART_SIZE",
-        payload: size
-    })
-}
+//     const size = cartItems.length
+//     dispatch({
+//         type: "GET_CART_SIZE",
+//         payload: size
+//     })
+// }
 
 export const setCart = (dispatch) => (token) => {
     axios.get("http://localhost:8080/api/cart/items", {

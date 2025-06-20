@@ -6,10 +6,11 @@ import Login from "./Pages/Login"
 import Cart from "./Component/Customer/Cart"
 import Orders from "./Component/Customer/Orders"
 import Address from "./Component/Customer/Address"
-import Profile from "./Component/Customer/Profile"
 import SellerDashboard from "./Pages/SellerDashboard"
 import Stats from "./Component/Seller/Stats"
 import CategoryProduct from "./Component/Customer/CategoryProduct"
+import ExecutiveDashboard from "./Pages/ExecutiveDashboard"
+import ProductManagement from "./Component/Executive/ProductManagement"
 function App() {
 
   return (
@@ -22,11 +23,14 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="orders" element={<Orders />} />
           <Route path="address" element={<Address />} />
-          <Route path="profile" element={<Profile />} />
           <Route path="category/:categoryId" element={<CategoryProduct />} />
         </Route>
         <Route path="/seller" element={<SellerDashboard />} >
           <Route index element={<Stats />} />
+        </Route>
+        <Route path="/executive" element={<ExecutiveDashboard />} >
+          <Route path="product-management" element={<ProductManagement />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
