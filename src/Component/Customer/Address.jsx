@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 const Address = () => {
     const [addresses, setAddresses] = useState([]);
     const [msg, setMsg] = useState("");
-
-    const [data, setdata] = useState({
+    const [data, setData] = useState({
         street: '',
         city: '',
         state: '',
@@ -13,6 +13,8 @@ const Address = () => {
         country: '',
         contactNumber: ''
     });
+    const [isEditMode, setIsEditMode] = useState(false);
+    const [editId, setEditId] = useState(null);
 
     const token = localStorage.getItem('token');
 
@@ -32,19 +34,19 @@ const Address = () => {
     }, []);
 
     const handleChange = (e) => {
-        setdata({ ...data, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value });
     };
 
     const addAddress = async () => {
         if (!(data.city && data.contactNumber && data.street && data.postalCode && data.country)) {
-            setMsg("Add all fields*")
+            setMsg("Add all fields*");
             return;
         }
         try {
             await axios.post('http://localhost:8080/api/address/add', data, {
-                headers: { Authorization: "Bearer " + token }
+                headers: { Authorization: `Bearer ${token}` }
             });
-            setdata({
+            setData({
                 street: '',
                 city: '',
                 state: '',
@@ -58,15 +60,64 @@ const Address = () => {
         }
     };
 
+    const editAddress = async () => {
+        if (!(data.city && data.contactNumber && data.street && data.postalCode && data.country)) {
+            setMsg("Add all fields*");
+            return;
+        }
+        try {
+            await axios.put(`http://localhost:8080/api/address/update/${editId}`, data, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setData({
+                street: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: '',
+                contactNumber: ''
+            });
+            setIsEditMode(false);
+            setEditId(null);
+            fetchAddresses();
+        } catch (err) {
+            console.error('Failed to update address', err);
+        }
+    };
+
+    const deleteAddress = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/address/delete/${id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            fetchAddresses();
+        } catch (err) {
+            console.error('Failed to delete address', err);
+        }
+    };
+
+    const handleEditClick = (addr) => {
+        setIsEditMode(true);
+        setEditId(addr.id);
+        setData({
+            street: addr.street,
+            city: addr.city,
+            state: addr.state,
+            postalCode: addr.postalCode,
+            country: addr.country,
+            contactNumber: addr.contactNumber
+        });
+    };
+
     return (
         <div className="container my-4">
             <div className="row">
                 <div className="col-md-6 mb-4">
-                    <h4>Add New Address</h4>
+                    <h4>{isEditMode ? "Edit Address" : "Add New Address"}</h4>
                     {msg && <div className="alert alert-info py-1 text-center">{msg}</div>}
                     <hr />
                     <div className="mb-2">
-                        <label >Street</label>
+                        <label>Street</label>
                         <input
                             type="text"
                             name="street"
@@ -77,7 +128,7 @@ const Address = () => {
                         />
                     </div>
                     <div className="mb-2">
-                        <label >City</label>
+                        <label>City</label>
                         <input
                             type="text"
                             name="city"
@@ -88,7 +139,7 @@ const Address = () => {
                         />
                     </div>
                     <div className="mb-2">
-                        <label >State</label>
+                        <label>State</label>
                         <input
                             type="text"
                             name="state"
@@ -99,7 +150,7 @@ const Address = () => {
                         />
                     </div>
                     <div className="mb-2">
-                        <label >Postal Code</label>
+                        <label>Postal Code</label>
                         <input
                             type="text"
                             name="postalCode"
@@ -110,7 +161,7 @@ const Address = () => {
                         />
                     </div>
                     <div className="mb-2">
-                        <label >Country</label>
+                        <label>Country</label>
                         <input
                             type="text"
                             name="country"
@@ -121,7 +172,7 @@ const Address = () => {
                         />
                     </div>
                     <div className="mb-2">
-                        <label >Contact Number</label>
+                        <label>Contact Number</label>
                         <input
                             type="text"
                             name="contactNumber"
@@ -131,8 +182,10 @@ const Address = () => {
                             required
                         />
                     </div>
-                    <button className="btn btn-primary" onClick={addAddress}>
-                        Add Address
+                    <button
+                        className="btn btn-primary"
+                        onClick={isEditMode ? editAddress : addAddress}>
+                        {isEditMode ? "Update Address" : "Add Address"}
                     </button>
                 </div>
 
@@ -153,6 +206,18 @@ const Address = () => {
                                     </p>
                                     <p className="card-text mb-1">{addr.country}</p>
                                     <p className="card-text"><strong>Contact:</strong> {addr.contactNumber}</p>
+
+                                    <button
+                                        className="btn btn-warning btn-sm"
+                                        onClick={() => handleEditClick(addr)}>
+                                        <FaEdit />
+                                    </button>
+                                    <button
+                                        style={{ marginLeft: "5px" }}
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => deleteAddress(addr.id)}>
+                                        <FaTrash />
+                                    </button>
                                 </div>
                             </div>
                         ))
