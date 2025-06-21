@@ -11,6 +11,7 @@ import Stats from "./Component/Seller/Stats"
 import CategoryProduct from "./Component/Customer/CategoryProduct"
 import ExecutiveDashboard from "./Pages/ExecutiveDashboard"
 import ProductManagement from "./Component/Executive/ProductManagement"
+import CustomersOrders from "./Component/Seller/CustomersOrders"
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
         </Route>
         <Route path="/seller" element={<SellerDashboard />} >
           <Route index element={<Stats />} />
+          <Route path="orders" element={<CustomersOrders />} />
         </Route>
         <Route path="/executive" element={<ExecutiveDashboard />} >
           <Route path="product-management" element={<ProductManagement />} />

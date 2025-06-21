@@ -33,7 +33,7 @@ const Navbar = () => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li className="nav-item">
-                            <Link className="nav-link" >Orders</Link>
+                            <Link to="/seller/orders" className="nav-link" >Orders</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" >Product Requests</Link>

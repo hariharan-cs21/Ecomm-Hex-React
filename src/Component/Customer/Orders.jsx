@@ -17,7 +17,7 @@ const renderProgress = (status) => {
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [times, setTimes] = useState({});
-
+    const [msg, setMsg] = useState("");
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
@@ -35,30 +35,46 @@ const Orders = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/order/history', {
-                    headers: {
-                        Authorization: "Bearer " + token
-                    }
-                });
-                setOrders(response.data);
-                response.data.forEach(order => {
-                    getTimes(order.orderId);
-                });
-            } catch (err) {
-                console.log('Failed to fetch orders');
-                navigate("/");
-            }
-        };
+    const fetchOrders = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/api/order/history', {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+            setOrders(response.data);
+            response.data.forEach(order => {
+                getTimes(order.orderId);
+            });
+        } catch (err) {
+            console.log('Failed to fetch orders');
+            navigate("/");
+        }
+    };
 
+    const cancelOrder = async (orderId) => {
+        try {
+            await axios.put(`http://localhost:8080/api/order/cancel/${orderId}`, null, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+            fetchOrders()
+            setMsg(res.data.message)
+
+        } catch (error) {
+            setMsg(error.response.data.message)
+        }
+    };
+    useEffect(() => {
         fetchOrders();
     }, []);
 
     return (
         <div className="container my-4">
             <h3 className="mb-4 fw-bold text-center">Order History</h3>
+            {msg && <div className="alert alert-info py-1">{msg}</div>}
+
             {orders.length === 0 ? (
                 <div className="alert alert-info text-center">No orders found.</div>
             ) : (
@@ -77,7 +93,17 @@ const Orders = () => {
                                     }`}>
                                     {order.status}
                                 </span>
+                                {!(order.status === "DELIVERED" || order.status === "CANCELLED") && (
+                                    <button
+                                        className="btn btn-sm btn-outline-danger mt-2"
+                                        onClick={() => cancelOrder(order.orderId)}
+                                    >
+                                        Cancel Order
+                                    </button>
+                                )}
+
                             </div>
+
 
                             <p className="text-muted small mb-2">
                                 <FiClock className="me-1" />
