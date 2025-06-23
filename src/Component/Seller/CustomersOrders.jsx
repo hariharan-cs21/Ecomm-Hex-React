@@ -100,6 +100,7 @@ const CustomersOrders = () => {
                         <option value="SHIPPED">Shipped</option>
                         <option value="DISPATCHED">Dispatched</option>
                         <option value="DELIVERED">Delivered</option>
+                        <option value="CANCELLED">Cancelled</option>
                     </select>
                 </div>
 

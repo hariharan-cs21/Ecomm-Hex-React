@@ -39,10 +39,10 @@ const Navbar = () => {
                             <Link className="nav-link" >Product Requests</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" >Add Product</Link>
+                            <Link to="/seller/manage-product" className="nav-link" >Manage Products</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" >Categories</Link>
+                            <Link to="/seller/my-products" className="nav-link" >My Products</Link>
                         </li>
 
 

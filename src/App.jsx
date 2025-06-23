@@ -12,6 +12,9 @@ import CategoryProduct from "./Component/Customer/CategoryProduct"
 import ExecutiveDashboard from "./Pages/ExecutiveDashboard"
 import ProductManagement from "./Component/Executive/ProductManagement"
 import CustomersOrders from "./Component/Seller/CustomersOrders"
+import ManageProducts from "./Component/Seller/ManageProducts"
+import SellerProducts from "./Component/Seller/SellerProducts"
+import MyProducts from "./Component/Seller/MyProducts"
 function App() {
 
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route path="/seller" element={<SellerDashboard />} >
           <Route index element={<Stats />} />
           <Route path="orders" element={<CustomersOrders />} />
+          <Route path="manage-product" element={<ManageProducts />} />
+          <Route path="seller-products/:id" element={<SellerProducts />} />
+          <Route path="my-products" element={<MyProducts />} />
         </Route>
         <Route path="/executive" element={<ExecutiveDashboard />} >
           <Route path="product-management" element={<ProductManagement />} />

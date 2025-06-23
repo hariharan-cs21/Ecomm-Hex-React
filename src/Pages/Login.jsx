@@ -33,6 +33,7 @@ const Login = () => {
             setUserDetails(dispatch)(user);
             localStorage.setItem("name", detail.data.name)
             let role = detail.data.user.role
+            localStorage.setItem("role", role)
             switch (role) {
                 case "CUSTOMER":
                     navigate("/customer")
