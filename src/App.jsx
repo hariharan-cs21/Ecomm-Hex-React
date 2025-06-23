@@ -15,6 +15,7 @@ import CustomersOrders from "./Component/Seller/CustomersOrders"
 import ManageProducts from "./Component/Seller/ManageProducts"
 import SellerProducts from "./Component/Seller/SellerProducts"
 import MyProducts from "./Component/Seller/MyProducts"
+import ProductRequest from "./Component/Seller/ProductRequest"
 function App() {
 
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="manage-product" element={<ManageProducts />} />
           <Route path="seller-products/:id" element={<SellerProducts />} />
           <Route path="my-products" element={<MyProducts />} />
+          <Route path="product-requests" element={<ProductRequest />} />
         </Route>
         <Route path="/executive" element={<ExecutiveDashboard />} >
           <Route path="product-management" element={<ProductManagement />} />

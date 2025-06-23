@@ -28,7 +28,8 @@ const ManageProducts = () => {
     return (
         <div>
             <Category setCategoryId={setCategoryId} role={user.role || localStorage.getItem("role")} />
-            <ProductsContainer handleViewClick={handleViewClick} products={products} />
+            {categoryId &&
+                <ProductsContainer handleViewClick={handleViewClick} products={products} />}
         </div>
     )
 }

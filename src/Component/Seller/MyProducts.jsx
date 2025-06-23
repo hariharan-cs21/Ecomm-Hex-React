@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MyProducts = () => {
     const [products, setProducts] = useState([]);
@@ -59,13 +60,22 @@ const MyProducts = () => {
                                         <strong>{product.brandName}</strong>
                                     </h5>
                                     <p className="text-muted">{product.productName}</p>
+
                                     <div className="mt-auto">
                                         <p className="card-text mb-1">
                                             <span className="fw-bold">₹{product.price}</span>
                                         </p>
-                                        <span className={`badge ${product.stockQuantity > 0 ? 'bg-success' : 'bg-danger'}`}>
-                                            {product.stockQuantity > 0 ? `In Stock (${product.stockQuantity})` : 'Out of Stock'}
-                                        </span>
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <span className={`badge ${product.stockQuantity > 0 ? 'bg-success' : 'bg-danger'}`}>
+                                                {product.stockQuantity > 0 ? `In Stock (${product.stockQuantity})` : 'Out of Stock'}
+                                            </span>
+                                            <Link
+                                                to={`/seller/seller-products/${product.sellerProductId}`}
+                                                className="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"
+                                            >
+                                                <i className="bi bi-gear-fill"></i> Manage
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
