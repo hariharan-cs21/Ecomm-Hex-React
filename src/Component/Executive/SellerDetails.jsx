@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SellerDetails = () => {
     const [sellers, setSellers] = useState([]);
-
+    const navigate = useNavigate()
 
 
     const fetchSellers = async () => {
@@ -30,6 +31,7 @@ const SellerDetails = () => {
                             <th>S.no</th>
                             <th>Seller Name</th>
                             <th>Username</th>
+                            <th>Products</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,13 @@ const SellerDetails = () => {
                                 <td>{index + 1}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.user.username}</td>
+                                <td> <button onClick={() => {
+                                    navigate(`/executive/seller-products/${seller.id}`)
+                                }}
+                                    className="btn btn-success"
+                                >
+                                    View
+                                </button></td>
                             </tr>
                         ))}
                         {sellers.length === 0 && (
@@ -45,6 +54,7 @@ const SellerDetails = () => {
                                 <td colSpan="3" className="text-center text-muted">No sellers found</td>
                             </tr>
                         )}
+
                     </tbody>
                 </table>
             </div>

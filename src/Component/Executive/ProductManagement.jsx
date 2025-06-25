@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const ProductManagement = () => {
     return (
         <div className="container mt-5">
-            <h3 className="mb-4">Product Management</h3>
             <div className="row row-cols-1 row-cols-md-2 g-4">
                 <div className="col">
                     <div className="card h-100 shadow-sm">

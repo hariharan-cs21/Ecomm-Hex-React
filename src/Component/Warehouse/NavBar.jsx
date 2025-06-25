@@ -32,22 +32,18 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
-
                         <li className="nav-item">
-                            <Link to="/executive/product-requests" className="nav-link" >Product Requests</Link>
+                            <Link to="/warehouse/shipped-orders" className="nav-link" >Shipped Orders</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/executive/product-management" >Manage All</Link>
+                            <Link to="/warehouse/deliver-orders" className="nav-link" >Delivery Service</Link>
                         </li>
 
 
 
                     </ul>
 
-                    <form className="d-flex me-3" role="search" onSubmit={(e) => e.preventDefault()}>
-                        <input className="form-control me-2" type="search" placeholder="Search products" />
-                        <button className="btn btn-outline-light" type="submit">Search</button>
-                    </form>
+
 
                     <ul className="navbar-nav ">
 

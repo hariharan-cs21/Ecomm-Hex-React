@@ -186,7 +186,7 @@ const CustomersOrders = () => {
                                                 {stockMap[product.orderItemId] !== undefined && (
                                                     <div className="mt-2">
                                                         <span className="badge bg-info text-dark">
-                                                            Stock: {stockMap[product.orderItemId]}
+                                                            Stock: {stockMap[product.orderItemId] + product.quantity}
                                                         </span>
                                                     </div>
                                                 )}

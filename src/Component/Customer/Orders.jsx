@@ -117,16 +117,20 @@ const Orders = () => {
                                 </p>
                             )}
 
-                            {times[order.orderId] && (
-                                <div className="mb-2 text-muted">
+
+                            <div className="mb-2 text-muted">
+                                {times[order.orderId]?.dispatchTime &&
                                     <div>
                                         <strong>Dispatched:</strong> {new Date(times[order.orderId].dispatchTime).toLocaleString()}
                                     </div>
+                                }
+                                {times[order.orderId]?.deliveredTime &&
                                     <div>
                                         <strong>Delivered:</strong> {new Date(times[order.orderId].deliveredTime).toLocaleString()}
                                     </div>
-                                </div>
-                            )}
+                                }
+                            </div>
+
 
                             <div className="mb-2">
                                 <p className="mb-1">
