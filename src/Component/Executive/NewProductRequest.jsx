@@ -18,7 +18,7 @@ const NewProductRequest = () => {
             const res = await axios.get("http://localhost:8080/api/executive/requests/pending", config);
             setPendingRequests(res.data);
         } catch (error) {
-            console.error("Error fetching pending requests:", error);
+            console.error(error);
         }
     };
 
@@ -28,8 +28,7 @@ const NewProductRequest = () => {
             setMessage("Product approved successfully.");
             fetchPendingRequests();
         } catch (error) {
-            console.error("Error approving product:", error);
-            setMessage("Failed to approve product.");
+            setMessage("Failed to approve product");
         }
     };
 
@@ -43,7 +42,7 @@ const NewProductRequest = () => {
             {message && <div className="alert alert-info py-1">{message}</div>}
             <div className="row">
                 {pendingRequests.length === 0 ? (
-                    <p>No pending product requests found.</p>
+                    <p>No pending product requests found</p>
                 ) : (
                     pendingRequests.map((req) => (
                         <div key={req.id} className="col-md-6 mb-4">

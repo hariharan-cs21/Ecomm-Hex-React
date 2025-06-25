@@ -17,6 +17,10 @@ import SellerProducts from "./Component/Seller/SellerProducts"
 import MyProducts from "./Component/Seller/MyProducts"
 import ProductRequest from "./Component/Seller/ProductRequest"
 import NewProductRequest from "./Component/Executive/NewProductRequest"
+import UploadImages from "./Component/Executive/UploadImages"
+import ManageCategory from "./Component/Executive/ManageCategory"
+import AddNewProduct from "./Component/Executive/AddNewProduct"
+import SellerDetails from "./Component/Executive/SellerDetails"
 function App() {
 
   return (
@@ -41,7 +45,11 @@ function App() {
         </Route>
         <Route path="/executive" element={<ExecutiveDashboard />} >
           <Route path="product-management" element={<ProductManagement />} />
+          <Route path="upload-images" element={<UploadImages />} />
+          <Route path="manage-cateogry" element={<ManageCategory />} />
+          <Route path="add-product" element={<AddNewProduct />} />
           <Route path="product-requests" element={<NewProductRequest />} />
+          <Route path="seller-details" element={<SellerDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
