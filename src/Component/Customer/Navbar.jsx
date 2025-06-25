@@ -3,12 +3,14 @@ import { IoMdCart } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "../../store/actions/UserActions";
-
+import { setSearchWord } from "../..//store/actions/SearchProductAction"
+import { useState } from "react";
 const Navbar = () => {
     const name = localStorage.getItem("name");
     const user = useSelector(state => state.user)
     const navigate = useNavigate();
     const cartsize = useSelector(state => state.cart.cartSize)
+    const [word, setWord] = useState("")
     const dispatch = useDispatch()
     const handleLogout = () => {
         localStorage.clear();
@@ -21,6 +23,11 @@ const Navbar = () => {
     };
     const handleCart = () => {
         navigate("/customer/cart")
+    }
+    const handleSearch = (e) => {
+        e.preventDefault()
+        navigate("/customer")
+        setSearchWord(dispatch)(word)
     }
 
 
@@ -48,8 +55,8 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <form className="d-flex me-3" role="search" onSubmit={(e) => e.preventDefault()}>
-                        <input className="form-control me-2" type="search" placeholder="Search products" />
+                    <form className="d-flex me-3" role="search" onSubmit={handleSearch}>
+                        <input onChange={(e) => setWord(e.target.value)} className="form-control me-2" type="search" placeholder="Search products" />
                         <button className="btn btn-outline-light" type="submit">Search</button>
                     </form>
 
